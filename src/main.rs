@@ -39,18 +39,23 @@ enum Color {
     CMYKColor{cyan:u8, magenta:u8, yellow: u8, black: u8} // Struct
 }
 
+impl Color {
+    fn to_string(self) -> String {
+        match self {
+            Color::Red => "RED".to_string(),
+            Color::Green => "GREEN".to_string(),
+            Color::Blue => "BLUE".to_string(),
+            Color::RGBColor(0, 0, 0) 
+            | Color::CMYKColor{cyan:_, magenta: _, yellow: _, black: 255} => "BLACK".to_string(),
+            Color::RGBColor(r, g, b) => format!("rbg({},{},{})", r, g, b),
+            Color::CMYKColor{cyan:c, magenta: m, yellow: y, black: k} => format!("cmyk({},{},{},{})", c, m, y, k)
+        }
+    }
+}
+
 fn enums() {
     let c:Color = Color::CMYKColor{cyan: 2, magenta: 25, yellow: 41, black: 200};
-
-    match c {
-        Color::Red => println!("RED"),
-        Color::Green => println!("GREEN"),
-        Color::Blue => println!("BLUE"),
-        Color::RGBColor(0, 0, 0) 
-        | Color::CMYKColor{cyan:_, magenta: _, yellow: _, black: 255} => println!("BLACK"),
-        Color::RGBColor(r, g, b) => println!("rbg({},{},{})", r, g, b),
-        Color::CMYKColor{cyan:c, magenta: m, yellow: y, black: k} => println!("cmyk({},{},{},{})", c, m, y, k)
-    }
+    println!("{}", c.to_string());
 }
 
 fn main() {
