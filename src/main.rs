@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unused_mut)]
 use std::mem;
 
 struct Point {
@@ -184,6 +185,22 @@ fn vectors() {
     println!("Popped everything");
 }
 
+fn pr(sl: &[i32]) {
+    println!("{:?}", sl);
+}
+
+fn pr_mut(sl: &mut [i32]) {
+    sl[0] = 234;
+}
+
+fn slices() {
+    let mut a: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("\nSlices:");
+    pr(&a[0..3]);
+    pr_mut(&mut a[1..3]);
+    println!("{:?}", a);
+}
+
 fn main() {
     structs();
     enums();
@@ -191,4 +208,5 @@ fn main() {
     options();
     array();
     vectors();
+    slices();
 }
