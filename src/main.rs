@@ -97,6 +97,18 @@ fn unions() {
     }
 }
 
+fn options() {
+    let x = 3.0, y = 0.0;
+
+    // Option -> Some(v) | None
+    let result = 
+        if y != 0.0 {Some(x/y)} else {None};
+    match result {
+        Some(z) => println!("{}/{}={}", x, y,z),
+        None => println!("Failed to divide by zero")
+        };
+}
+
 fn main() {
     structs();
     enums();
