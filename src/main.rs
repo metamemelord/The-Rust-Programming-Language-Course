@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 #![allow(unused_mut)]
+#![allow(unused_must_use)]
+#![allow(unused_variables)]
 use std::mem;
 
 struct Point {
@@ -201,6 +203,46 @@ fn slices() {
     println!("{:?}", a);
 }
 
+fn strings() {
+    println!("\nStrings:");
+    let s: &'static str = "hello!"; // &str => string slice
+                                    // Cannot re-assign s = "lol";
+                                    // Cannot access using indices let c = s[0];
+
+    for c in s.chars().rev() {
+        print!("{}", c);
+    }
+    println!("");
+
+    if let Some(ch) = s.chars().nth(0) {
+        println!("0th char: {}", ch);
+    }
+
+    // Heap allocated => String
+    let mut letters = String::new();
+    let mut a = 'a' as u8;
+    while a <= ('z' as u8) {
+        letters.push(a as char);
+        letters.push_str(",");
+        a += 1;
+    }
+    println!("{}", letters);
+
+    // &str <> String
+    let l: &str = &letters;
+
+    letters.remove(letters.len() - 1);
+    // Concatenation
+    // String + str
+    let z = letters + "!!!";
+    println!("{}", z);
+
+    let mut a = String::from("test!!!!"); // or "test".to_string()
+    a.remove(a.len() - 1);
+    a = a.replace("test", "passed");
+    println!("{}", a);
+}
+
 fn main() {
     structs();
     enums();
@@ -209,4 +251,5 @@ fn main() {
     array();
     vectors();
     slices();
+    strings();
 }
