@@ -2,6 +2,7 @@
 #![allow(unused_mut)]
 #![allow(unused_must_use)]
 #![allow(unused_variables)]
+
 use std::mem;
 
 struct Point {
@@ -243,6 +244,46 @@ fn strings() {
     println!("{}", a);
 }
 
+fn snp(x: u32, y: u32) -> (u32, u32) {
+    (x + y, x * y)
+}
+
+fn tuples() {
+    println!("\nTuples:");
+    let x = 3;
+    let y = 4;
+    let res = snp(x, y);
+    println!("Result: {:?}", res);
+    println!("Sum: {}, Product: {}", res.0, res.1);
+
+    // Destructuring
+    let (s, p) = res;
+    println!("Sum: {}, Product: {}", s, p);
+}
+
+fn hash_maps() {
+    println!("\nHash maps:");
+    let mut shapes = std::collections::HashMap::new();
+
+    // Key should have eq and hash trait implemented!!!!!!!!!!
+    //let p = Point { x: 1.1, y: 1.2 };
+    // shapes.insert(&p, 1); // This errs out!!!!
+
+    shapes.insert("triangle".to_string(), 3);
+    println!("{:?}", shapes);
+    println!("Triangle = {}", shapes["triangle"]);
+
+    // If not found, insert
+    let val = shapes.entry("cicle".into()).or_insert(1);
+
+    // If a value is found, a mutable reference is returned. This can be dereferenced to access the value.
+    *val = 2;
+    // Else
+    // Entry(VacantEntry(<Key>)) is returned, which cannot be dereferenced.
+
+    println!("{:?}", val);
+}
+
 fn main() {
     structs();
     enums();
@@ -252,4 +293,6 @@ fn main() {
     vectors();
     slices();
     strings();
+    tuples();
+    hash_maps();
 }
