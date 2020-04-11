@@ -3,6 +3,8 @@
 #![allow(unused_must_use)]
 #![allow(unused_variables)]
 
+mod pm;
+
 use std::mem;
 
 struct Point {
@@ -61,13 +63,14 @@ impl Color {
             Color::Red => "RED".to_string(),
             Color::Green => "GREEN".to_string(),
             Color::Blue => "BLUE".to_string(),
-            Color::RGBColor(0, 0, 0)
-            | Color::CMYKColor {
-                cyan: _,
-                magenta: _,
-                yellow: _,
-                black: 255,
-            } => "BLACK".to_string(),
+            //            Color::RGBColor(0, 0, 0)
+            //            | Color::CMYKColor {
+            //                cyan: _,
+            //                magenta: _,
+            //                yellow: _,
+            //                black: 255,
+            //            } => "BLACK".to_string(),
+            Color::RGBColor(0, 0, 0) | Color::CMYKColor { black: 255, .. } => "BLACK".to_string(),
             Color::RGBColor(r, g, b) => format!("rbg({},{},{})", r, g, b),
             Color::CMYKColor {
                 cyan: c,
@@ -261,6 +264,19 @@ fn tuples() {
     println!("Sum: {}, Product: {}", s, p);
 }
 
+struct PointGen<T> {
+    x: T,
+    y: T,
+}
+
+fn generics() {
+    println!("\nGenerics:");
+    let p = PointGen { x: 20f64, y: 3.4 };
+    println!("PointGen: ({},{})", p.x, p.y);
+    let pi: PointGen<i32> = PointGen { x: 20, y: 3 };
+    println!("PointGen<i32>: ({},{})", pi.x, pi.y);
+}
+
 fn hash_maps() {
     println!("\nHash maps:");
     let mut shapes = std::collections::HashMap::new();
@@ -294,5 +310,7 @@ fn main() {
     slices();
     strings();
     tuples();
+    pm::pattern_matching();
+    generics();
     hash_maps();
 }
