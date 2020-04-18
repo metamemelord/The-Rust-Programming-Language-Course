@@ -4,6 +4,7 @@
 #![allow(unused_variables)]
 
 mod pm;
+mod strs;
 
 use std::mem;
 
@@ -382,4 +383,6 @@ fn main() {
     generics();
     hash_maps();
     hash_sets();
+    strs::intro();
+    strs::format_macro();
 }
