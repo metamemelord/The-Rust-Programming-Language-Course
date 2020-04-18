@@ -300,6 +300,74 @@ fn hash_maps() {
     println!("{:?}", val);
 }
 
+fn hash_sets() {
+    println!("\nHash sets:");
+    let mut words = std::collections::HashSet::new();
+    words.insert("hello");
+    println!("{:?}", words);
+
+    let added_world = words.insert("world");
+    if added_world {
+        println!("Added world to set")
+    } else {
+        println!("Didn't world to set")
+    }
+
+    if !words.contains("lol") {
+        println!("Words does not contain lol, adding now!");
+        words.insert("lol");
+    }
+
+    let removed = words.remove("lol");
+    if removed {
+        println!("Removed lol");
+    }
+
+    // Maths ops
+    let _1_5: std::collections::HashSet<_> = (1..=5).collect();
+    let _10_15: std::collections::HashSet<_> = (10..=15).collect();
+    let _3_11: std::collections::HashSet<_> = (3..=11).collect();
+    let _6_9: std::collections::HashSet<_> = (6..=9).collect();
+
+    // subset
+    println!(
+        "Is {:?} a subset of {:?}? {}",
+        _6_9,
+        _3_11,
+        _6_9.is_subset(&_3_11)
+    );
+
+    // disjoint
+    println!(
+        "Are {:?} and {:?} disjoint? {}",
+        _1_5,
+        _10_15,
+        _10_15.is_disjoint(&_1_5)
+    );
+
+    // union and intersection
+    println!(
+        "Union of {:?} and {:?} is {:?}",
+        _1_5,
+        _10_15,
+        _1_5.union(&_10_15)
+    );
+    println!(
+        "Intersection of {:?} and {:?} is {:?}",
+        _3_11,
+        _10_15,
+        _3_11.intersection(&_10_15)
+    );
+
+    // difference
+    println!(
+        "Difference of {:?} and {:?} is {:?}",
+        _3_11,
+        _1_5,
+        _3_11.symmetric_difference(&_1_5)
+    );
+}
+
 fn main() {
     structs();
     enums();
@@ -313,4 +381,5 @@ fn main() {
     pm::pattern_matching();
     generics();
     hash_maps();
+    hash_sets();
 }
