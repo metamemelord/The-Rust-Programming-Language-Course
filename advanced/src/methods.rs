@@ -34,6 +34,7 @@ impl Line {
 }
 
 pub fn init() {
+    println!("\nMethods:");
     let st = Point::new(0f64, 0f64);
     let en = Point::new(1f64, 0f64);
     let line = Line::new(st, en);

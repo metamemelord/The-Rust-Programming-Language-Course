@@ -7,6 +7,7 @@ fn even(x: &i32) -> bool {
 }
 
 pub fn init() {
+    println!("\nHigher order functions:");
     let ub = 100;
 
     let mut iter = 0;

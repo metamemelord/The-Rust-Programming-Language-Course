@@ -1,4 +1,5 @@
 pub fn init() {
+    println!("\nClosures:");
     let ds = do_something;
     ds();
 
