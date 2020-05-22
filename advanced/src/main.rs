@@ -9,6 +9,7 @@ mod higher_order_functions;
 mod methods;
 mod static_dispatch;
 mod traits;
+mod generic_vectors;
 
 fn main() {
     functions::init();
@@ -18,4 +19,5 @@ fn main() {
     traits::init();
     static_dispatch::init();
     dynamic_dispatch::init();
+    generic_vectors::init();
 }

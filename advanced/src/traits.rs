@@ -12,7 +12,7 @@ pub fn init() {
     d.talk();
 
     // Type determined at runtime
-    let doggo: Dog = Animal::new("Pupper");
+    let doggo: Dog = Dog::new("Pupper");
 
     let a = vec![1, 4, 9];
     println!("Sum of {:?} is {}", a, a.sum());
@@ -37,22 +37,24 @@ pub fn init() {
     drop(ch);
 }
 
-trait Animal {
-    fn new(name: &'static str) -> Self;
+pub trait Animal {
     fn name(&self) -> &'static str;
     fn talk(&self) {
         println!("{} cannot talk!", self.name());
     }
 }
 
-struct Human {
+pub struct Human {
     name: &'static str,
 }
 
-impl Animal for Human {
-    fn new(name: &'static str) -> Human {
+impl Human {
+    pub fn new(name: &'static str) -> Human {
         Human { name: name }
     }
+}
+
+impl Animal for Human {
     fn name(&self) -> &'static str {
         self.name
     }
@@ -62,14 +64,17 @@ impl Animal for Human {
 }
 
 #[derive(Debug)]
-struct Dog {
+pub struct Dog {
     name: &'static str,
 }
 
-impl Animal for Dog {
-    fn new(name: &'static str) -> Dog {
+impl Dog {
+    pub fn new(name: &'static str) -> Dog {
         Dog { name: name }
     }
+}
+
+impl Animal for Dog {
     fn name(&self) -> &'static str {
         self.name
     }
